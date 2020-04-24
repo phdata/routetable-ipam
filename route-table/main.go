@@ -48,7 +48,7 @@ func main() {
 
 	if vars.Command == "VERSION" {
 		//report supported cni versions
-		exitOutput = []byte(fmt.Sprintf("{\"cniVersion\": \"%v\", \"supportedVersions\": [\"0.4.0\"]}", cni.Version))
+		exitOutput = []byte(fmt.Sprintf("{\"cniVersion\": \"%v\", \"supportedVersions\": [\"%v\"]}", cni.CNIVersion, cni.CNIVersion))
 		return
 	}
 
@@ -87,7 +87,7 @@ func main() {
 			Address: addr.String(),
 		}
 		result := &cni.Result{
-			CNIVersion: cni.Version,
+			CNIVersion: cni.CNIVersion,
 			IPs:        ips,
 		}
 		os.Stdout.Write(result.Marshal())
